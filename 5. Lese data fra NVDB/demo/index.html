@@ -62,25 +62,28 @@
         }).addTo(map);
 
     var skredLayers = L.layerGroup().addTo(map);
+    var tunnelLayers = L.layerGroup().addTo(map);
 
-    var drawFeatures = function(sokeResponse) {
-      skredLayers.clearLayers();
+    var drawFeatures = function(sokeResponse, layerGroup, color) {
+      layerGroup.clearLayers();
       var features  = sokeResponse.resultater[0].vegObjekter;
       if (Array.isArray(features)) {
         features.forEach(function(feature) {
-          skredLayers.addLayer(omnivore.wkt.parse(feature.lokasjon.geometriWgs84));
+          var feature = omnivore.wkt.parse(feature.lokasjon.geometriWgs84)
+          feature.setStyle({color: color});
+          layerGroup.addLayer(feature);
         });
       }
     }
 
-    var performSearch = function(kriterie, select, callback) {
+    var performSearch = function(kriterie, select, layerGroup, color, callback) {
       var oReq = new XMLHttpRequest();
       oReq.open("GET", "https://www.vegvesen.no/nvdb/api/sok?kriterie=" + encodeURIComponent(JSON.stringify(kriterie)) + "&select=" + encodeURIComponent(select));
       oReq.onreadystatechange = function (aEvt) {
       if (oReq.readyState == 4) {
          if(oReq.status == 200) {
            var sokeResponse = JSON.parse(oReq.responseText);
-           callback(sokeResponse);
+           callback(sokeResponse, layerGroup, color);
          } else {
            console.log("ERROR loading skred from API");
          }
@@ -89,18 +92,18 @@
       oReq.send();
     }
 
-    var createCriteria = function(year) {
+    var createCriteria = function(objektTypeId, year, type) {
       return {
         lokasjon: {
-          kommune:[1601],
+          kommune:[2019],
           srid:"wgs84"
        },
        objektTyper:[{
-         id:445,
+         id:objektTypeId,
          antall:"1000",
          filter:[
-           {"type":"Skred dato","operator":">=","verdi":["1991-01-01"]},
-           {"type":"Skred dato","operator":"<=","verdi":[year + "-01-01"]}
+           {"type":type,"operator":">=","verdi":[type === "Skred dato" ? "1990-01-01" : "1990"]},
+           {"type":type,"operator":"<=","verdi":[type === "Skred dato" ? year + "-01-01" : year]}
          ]
        }]};
     }
@@ -109,7 +112,8 @@
 
     var updateYear = function(val) {
       document.getElementById("timelineText").textContent = val;
-      performSearch(createCriteria(val), select, drawFeatures);
+      performSearch(createCriteria(445, val, "Skred dato"), select, skredLayers, "#193", drawFeatures);
+      performSearch(createCriteria(67, val, "Åpningsår"), select, tunnelLayers, "#00b", drawFeatures);
     }
 
   </script>
