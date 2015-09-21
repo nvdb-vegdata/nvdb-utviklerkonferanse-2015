@@ -61,11 +61,16 @@
           attribution: 'NVDB Utviklerkonferanse'
         }).addTo(map);
 
+    var skredLayers = L.layerGroup().addTo(map);
+
     var drawFeatures = function(sokeResponse) {
+      skredLayers.clearLayers();
       var features  = sokeResponse.resultater[0].vegObjekter;
-      features.forEach(function(feature) {
-        omnivore.wkt.parse(feature.lokasjon.geometriWgs84).addTo(map);
-      });
+      if (Array.isArray(features)) {
+        features.forEach(function(feature) {
+          skredLayers.addLayer(omnivore.wkt.parse(feature.lokasjon.geometriWgs84));
+        });
+      }
     }
 
     var performSearch = function(kriterie, select, callback) {
@@ -84,23 +89,27 @@
       oReq.send();
     }
 
-    var kriterie = {
-      lokasjon: {
-        kommune:[1601],
-        srid:"wgs84"
-     },
-     objektTyper:[{
-       id:445,
-       antall:"1000",
-       filter:[]
-     }]};
-    var select = 'objektId,objektTypeId,vegObjektLokasjon/vegReferanser,vegObjektLokasjon/geometriWgs84';
+    var createCriteria = function(year) {
+      return {
+        lokasjon: {
+          kommune:[1601],
+          srid:"wgs84"
+       },
+       objektTyper:[{
+         id:445,
+         antall:"1000",
+         filter:[
+           {"type":"Skred dato","operator":">=","verdi":["1991-01-01"]},
+           {"type":"Skred dato","operator":"<=","verdi":[year + "-01-01"]}
+         ]
+       }]};
+    }
 
-    performSearch(kriterie, select, drawFeatures);
+    var select = 'objektId,objektTypeId,vegObjektLokasjon/vegReferanser,vegObjektLokasjon/geometriWgs84';
 
     var updateYear = function(val) {
       document.getElementById("timelineText").textContent = val;
-
+      performSearch(createCriteria(val), select, drawFeatures);
     }
 
   </script>
