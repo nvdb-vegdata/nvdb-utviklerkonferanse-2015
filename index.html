@@ -65,7 +65,23 @@
     }
 
     // Simple search after "skred"
-    var oReq = new XMLHttpRequest();
+
+    var performSearch = function(kriterie, select, callback, context) {
+      var oReq = new XMLHttpRequest();
+      oReq.open("GET", "https://www.vegvesen.no/nvdb/api/sok?kriterie=" + encodeURIComponent(JSON.stringify(kriterie)) + "&select=" + encodeURIComponent(select));
+      oReq.onreadystatechange = function (aEvt) {
+      if (oReq.readyState == 4) {
+         if(oReq.status == 200) {
+           var sokeResponse = JSON.parse(oReq.responseText);
+           callback.call(context || this, sokeResponse);
+         } else {
+           console.log("ERROR loading skred from API");
+         }
+        }
+      };
+      oReq.send();
+    }
+
     var kriterie = {
       lokasjon: {
         kommune:[1601],
@@ -77,18 +93,9 @@
        filter:[]
      }]};
     var select = 'objektId,objektTypeId,vegObjektLokasjon/vegReferanser,vegObjektLokasjon/geometriWgs84';
-    oReq.open("GET", "https://www.vegvesen.no/nvdb/api/sok?kriterie=" + encodeURIComponent(JSON.stringify(kriterie)) + "&select=" + encodeURIComponent(select));
-    oReq.onreadystatechange = function (aEvt) {
-    if (oReq.readyState == 4) {
-       if(oReq.status == 200) {
-         var sokeResponse = JSON.parse(oReq.responseText);
-         drawFeatures(sokeResponse);
-       } else {
-         console.log("ERROR loading skred from API");
-       }
-      }
-    };
-    oReq.send();
+
+    performSearch(kriterie, select, drawFeatures);
+
   </script>
 </body>
 
