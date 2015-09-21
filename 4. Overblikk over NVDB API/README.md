@@ -1,4 +1,8 @@
-﻿# Overblikk over NVDB API
+# Overblikk over NVDB API
+
+## Et NVDB-objekt
+
+
 
 * Et objekt i NVDB består av følgende: Objekttypenavn, egenskaper og geometri, 
 * Alle objekttyper har en id, som benyttes i APIet. Navnene kan i teorien endres.
