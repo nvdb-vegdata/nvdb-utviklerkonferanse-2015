@@ -54,26 +54,21 @@
           attribution: 'NVDB Utviklerkonferanse'
         }).addTo(map);
 
-
-
     var drawFeatures = function(sokeResponse) {
       var features  = sokeResponse.resultater[0].vegObjekter;
       features.forEach(function(feature) {
         omnivore.wkt.parse(feature.lokasjon.geometriWgs84).addTo(map);
       });
-
     }
 
-    // Simple search after "skred"
-
-    var performSearch = function(kriterie, select, callback, context) {
+    var performSearch = function(kriterie, select, callback) {
       var oReq = new XMLHttpRequest();
       oReq.open("GET", "https://www.vegvesen.no/nvdb/api/sok?kriterie=" + encodeURIComponent(JSON.stringify(kriterie)) + "&select=" + encodeURIComponent(select));
       oReq.onreadystatechange = function (aEvt) {
       if (oReq.readyState == 4) {
          if(oReq.status == 200) {
            var sokeResponse = JSON.parse(oReq.responseText);
-           callback.call(context || this, sokeResponse);
+           callback(sokeResponse);
          } else {
            console.log("ERROR loading skred from API");
          }
