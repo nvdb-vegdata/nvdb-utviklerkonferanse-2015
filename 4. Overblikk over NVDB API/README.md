@@ -49,12 +49,18 @@ Mer informasjon:
 
 ## Eksempel på vegobjekt
 
-Et vegobjekt har en unik id, og er av en bestemt vegobjekttype.
+Her er en oversikt over de elementene et objekt består av i NVDB API. Eksempelet er forenklet. 
+
+### Metadata
+
+Et vegobjekt har en unik id, og er av en bestemt vegobjekttype. 
 
     {
         objektId: 487458621,
         objektTypeId: 45,
     }
+
+### Egenskaper
 
 Et vegobjekt har egenskaper med tilhørende verdier. Egenskapstypen er angitt ved navn og id. 
 
@@ -88,13 +94,18 @@ Et vegobjekt har egenskaper med tilhørende verdier. Egenskapstypen er angitt ve
         ]
     }
 
-Et vegobjekt er koordinatfestet, som gjør at det kan vises på kart. Koordinatene er lagret i projeksjonen UTM33 i NVDB-databasen, men det er også mulig å hente WGS84-koordinater gjennom NVDB API. 
+### Koordinater
+
+Et vegobjekt er koordinatfestet, som gjør at det kan vises på kart. Koordinatene er lagret i projeksjonen UTM33 i NVDB-databasen, men det er også mulig å hente WGS84-koordinater gjennom NVDB API. Tilleggsstedfesting ved koordinater (egengeometri), som gjelder objekttyper der datakatalogen tillater det. Denne form for stedfesting har også støtte for kvalitetsparametere, som blant annet kan si noe om målekvalitet, jfr. SOSI-standarden.
 
     {
         geometriUtm33: "POINT (271441.3500267718 7039309.464531345)",
+        geometriWgs84: "POINT (10.420684407973214 63.40878189800789)"
     }
 
-Et vegobjekt er stedfestet til vegnettets lenke-node-struktur.
+### Stedfesting til vegnettet
+
+Et vegobjekt er stedfestet til vegnettets lenke-node-struktur. Et punktobjekt er enthydig stedfestet ved en veglenke-id + posisjon på lenka (mellom 0 og 1). Strekningsobjekter stedfestes ved en eller flere veglenkesegmenter, lenke-id + fra- og til-posisjon. Det kan også angis egenskaper for stedfestingen: Sideposisjon, kjørefelt og retning.
 
     {
         veglenker: [
@@ -108,6 +119,8 @@ Et vegobjekt er stedfestet til vegnettets lenke-node-struktur.
             }
         ]
     }
+
+### Vegreferanse
 
 Et vegobjekt har vegreferanse, som er utledet fra stedfestingen til vegnettet. Vegreferansen ...
 
@@ -124,6 +137,8 @@ Et vegobjekt har vegreferanse, som er utledet fra stedfestingen til vegnettet. V
             }
         ]
     }
+
+### Områder
 
 Et vegobjekt har beliggenhet innenfor administrative områder, som er utledet fra stedfestingen til vegnettet. 
 
@@ -154,24 +169,17 @@ Et vegobjekt har beliggenhet innenfor administrative områder, som er utledet fr
         ]
     }
 
-Et fagdata-objekt i NVDB består av følgende:
-* Egenskaper med tilhørende verdier
-* Stedfesting i form av tilknytning til vegnettets lenke-node-struktur. Et punktobjekt er enthydig stedfestet ved en veglenke-id + posisjon på lenka (mellom 0 og 1). Strekningsobjekter stedfestes ved en eller flere veglenkesegmenter, lenke-id + fra- og til-posisjon. Det kan også angis egenskaper for stedfestingen: Sideposisjon, kjørefelt og retning.
-* Tilleggsstedfesting ved koordinater (egengeometri), som gjelder objekttyper der datakatalogen tillater det. Denne form for stedfesting har også støtte for kvalitetsparametere, som blant annet kan si noe om målekvalitet, jfr. SOSI-standarden.
-* Unik NVDB objekt-id, en eller flere objektversjoner, gyldighetsperiode pr. objektversjon (start-/slutt-dato). Objekttyper osm er definert som ikke-tidsromrelevante (også kalt hendelser), har aldri mer enn én versjon, for eksempel trafikkulykke og skred. 
-* Et objekt kan ha relasjon til andre objekter. Et objekt har en kobling til de objektene som er nedenfor objektet i objekthierarkiet, men ikke motsatt. I NVDB-sammenheng kalles relasjoner kalles ofte for mor-datter-koblinger. 
 
-* Et objekt har også følgende: Tilknytning til vegnettet og assosiasjoner til andre objekter
-* Kort om vegnett: Topologisk vegnettverk med veglenker, vegreferanse, utledet geometri og egengeometri
-* 
+### Assosiasjoner
 
-## Områder
+Et objekt kan ha relasjon til andre objekter. Et objekt har en kobling til de objektene som er nedenfor objektet i objekthierarkiet, men ikke motsatt. I NVDB-sammenheng kalles relasjoner kalles ofte for mor-datter-koblinger. 
 
-Indirekte stedfestet gjennom vegnettet. 
 
-## Historikk
+### Historikk
 
 Objekter i NVDB-databasen slettes som hovedregel ikke. De settes i stedet historiske, ved at det angis en sluttdato. Dersom et objekt får en ny verdi på en egenskap, slettes ikke den eksisterende egenskapsverdien fra databasen. Det opprettes i stedet en ny versjon av objektet. Den eksisterende versjonen får en sluttdato, mens den nye versjonen får en tilsvarende startdato. Denne oppførselen kan overstyres, ved å spesifisere at det skal skje en korreksjon (feilretting), i stedet for en endring.
+
+Unik NVDB objekt-id, en eller flere objektversjoner, gyldighetsperiode pr. objektversjon (start-/slutt-dato). Objekttyper osm er definert som ikke-tidsromrelevante (også kalt hendelser), har aldri mer enn én versjon, for eksempel trafikkulykke og skred. 
 
 ## Vegnett
 
