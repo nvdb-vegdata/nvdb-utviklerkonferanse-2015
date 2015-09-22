@@ -11,7 +11,9 @@ Denne presentasjonen går gjennom følgende tema:
 
 NVDB inneholder Norges offisielle digitale vegnett, med både geometri og topologi. Vi vet hvor en vegbefinner seg, og hvordan den henger sammen. 
 
-I tillegg inneholder NVDB mellom 300 og 400 typer vegobjekter, som er stedfestet til vegnettet. Eksempel:
+I tillegg inneholder NVDB mellom 300 og 400 typer vegobjekter, som er stedfestet til vegnettet. 
+
+Eksempel på vegobejkttyper:
 
 * Fartsgrense
 * Trafikkmengde
@@ -27,11 +29,19 @@ Vegobjekttypene kan deles inn i to kategorier:
 * Punktobjekttyper – Fagdata som normalt er koblet til vegnettet gjennom ett punkt
 *	Strekningsobjekttyper – Fagdata som er koblet til vegnettet over en strekning
 
+
 ## Datakatalogen
 
+Innholdet i NVDB defineres i en egen metadatabase, som kalles Datakatalogen. 
 
-* Alle objekttyper har en id, som benyttes i APIet. Navnene kan i teorien endres.
-* Datakatalogen inneholder oversikt over alle vegobjekttyper, egenskapstyper, tillatte verdier osv.
+Datakatalogen inneholder  vegobjekttyper, med tilhørende egenskapstyper, tillatte verdier og assosiasjoner. Det finnes også styringsparametere, med et regelverk som enda mer detaljert beskriver hvordan et objekt kan, eller ikke kan registreres. 
+
+Alle vegobjekttyper, egenskapstuyper og tillatte verdier har en unik id. Vegobjekttypen Bomstasjon har for eksempel id lik 45. 
+
+
+
+
+
 * Bruk ider når dere spør APIet og leser responsen!
 
 
