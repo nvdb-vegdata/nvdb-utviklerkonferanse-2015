@@ -2,10 +2,7 @@
 
 For å kunne ta i bruk NVDB API på en effektiv måte, er det en fordel å ha kunnskap om hvordan NVDBs datamodell er bygd opp. 
 
-Denne presentasjonen går gjennom følgende tema:
-
-* Innhold i NVDB
-* Datakatalogen
+Denne presentasjonen går gjennom et de byggesteinene et typisk vegobjekt i NVDB er bygd opp av. 
 
 
 ## Innhold i NVDB
@@ -36,11 +33,11 @@ Vegobjekttypene kan deles inn i to kategorier:
 
 Hvilke typer vegobjekter som kan registreres i NVDB, defineres i en egen metadatabase, som kalles *datakatalogen*. 
 
-Datakatalogen inneholder *vegobjekttyper*, med tilhørende *egenskapstyper*, *tillatte verdier* og *assosiasjoner*. Det finnes også *styringsparametere*, som detaljert angir hvordan et objekt kan, eller ikke kan, registreres. 
+Datakatalogen inneholder *vegobjekttyper*, med tilhørende *egenskapstyper*, *tillatte verdier* og *relasjoner*. Det finnes også *styringsparametere*, som detaljert angir hvordan et objekt kan, eller ikke kan, registreres. 
 
 Alle vegobjekttyper, egenskapstyper og tillatte verdier har en unik id. Vegobjekttypen _Bomstasjon_ har for eksempel id lik _45_. 
 
-I NVDB API skal det brukes id, og ikke navn, når det hentes en spesifikk vegobjekttype. 
+I NVDB API skal det brukes id, og ikke navn, når det skal angis en spesifikk vegobjekttype. 
 
 Mer informasjon:
 
@@ -49,10 +46,6 @@ Mer informasjon:
 
 
 ## Eksempel på vegobjekt
-
-Her er en oversikt over de elementene et objekt består av i NVDB API. Eksempelet er forenklet. 
-
-### Metadata
 
 Et vegobjekt har en unik id, og er av en bestemt vegobjekttype. 
 
@@ -63,7 +56,7 @@ Et vegobjekt har en unik id, og er av en bestemt vegobjekttype.
 
 ### Egenskaper
 
-Et vegobjekt har egenskaper med tilhørende verdier. Egenskapstypen er angitt ved navn og id. 
+Et vegobjekt har egenskaper med tilhørende verdier. Hver egenskapstype er angitt med navn og id. 
 
     {   
         egenskaper: [
@@ -95,18 +88,28 @@ Et vegobjekt har egenskaper med tilhørende verdier. Egenskapstypen er angitt ve
         ]
     }
 
+Datakatalogen inneholder informasjon om blant annet egenskapstypene datatype, for eksempel *tekst*, *tall* eller *enum*. For egenskapstyper av type enum er det definert et sett av tillatte verdier. 
+
+
 ### Koordinater
 
-Et vegobjekt er koordinatfestet, som gjør at det kan vises på kart. Koordinatene er lagret i projeksjonen UTM33 i NVDB-databasen, men det er også mulig å hente WGS84-koordinater gjennom NVDB API. Tilleggsstedfesting ved koordinater (egengeometri), som gjelder objekttyper der datakatalogen tillater det. Denne form for stedfesting har også støtte for kvalitetsparametere, som blant annet kan si noe om målekvalitet, jfr. SOSI-standarden.
+Et vegobjekt er koordinatfestet, som gjør at det kan vises på kart. Enten punkt-, linje- eller flategeometri. Koordinatene er lagret i projeksjonen UTM33 i NVDB-databasen, men det er også mulig å hente WGS84-koordinater gjennom NVDB API. 
+
+De fleste vegobjekter har en geometri som er utledet fra vegnettet, og er derfor plassert langs vegens senterlinje. Egengeometri blir mer og mer utbredt. Om et objekt har egengeometri eller ikke, er eksplisitt angitt i API-responsen. 
+
+(Bilde: Vanlig stedfesting vs. skiltpunkt i trondheim kommune)
 
     {
         geometriUtm33: "POINT (271441.3500267718 7039309.464531345)",
         geometriWgs84: "POINT (10.420684407973214 63.40878189800789)"
     }
 
+
 ### Stedfesting til vegnettet
 
-Et vegobjekt er stedfestet til vegnettets lenke-node-struktur. Et punktobjekt er enthydig stedfestet ved en veglenke-id + posisjon på lenka (mellom 0 og 1). Strekningsobjekter stedfestes ved en eller flere veglenkesegmenter, lenke-id + fra- og til-posisjon. Det kan også angis egenskaper for stedfestingen: Sideposisjon, kjørefelt og retning.
+Et vegobjekt er stedfestet til vegnettets lenke-node-struktur. Et punktobjekt er enthydig stedfestet ved en veglenke-id + en relativ posisjon på veglenkenlenken mellom 0 og 1. Strekningsobjekter stedfestes ved en eller flere veglenkesegmenter, ved  lenke-id og fra- og til-posisjon. Det kan også angis egenskaper for stedfestingen: Sideposisjon, kjørefelt og retning.
+
+Veglenkeposisjonen er først og fremst nyttig for de som har bruk for objektets posisjon på det topologiske vegnettet. 
 
     {
         veglenker: [
@@ -121,9 +124,10 @@ Et vegobjekt er stedfestet til vegnettets lenke-node-struktur. Et punktobjekt er
         ]
     }
 
+
 ### Vegreferanse
 
-Et vegobjekt har vegreferanse, som er utledet fra stedfestingen til vegnettet. Vegreferansen ...
+Et vegobjekt har vegreferanse, for eksempel *Europaveg 6*, *E6*, som er en administrativ betegnelse på vegen. 
 
     {
         vegReferanser: [
@@ -141,7 +145,7 @@ Et vegobjekt har vegreferanse, som er utledet fra stedfestingen til vegnettet. V
 
 ### Områder
 
-Et vegobjekt har beliggenhet innenfor administrative områder, som er utledet fra stedfestingen til vegnettet. 
+Et vegobjekt har beliggenhet innenfor administrative områder. 
 
     {
         kommune: {
@@ -171,21 +175,24 @@ Et vegobjekt har beliggenhet innenfor administrative områder, som er utledet fr
     }
 
 
-### Assosiasjoner
+### Relasjoner
 
-Et objekt kan ha relasjon til andre objekter. Et objekt har en kobling til de objektene som er nedenfor objektet i objekthierarkiet, men ikke motsatt. I NVDB-sammenheng kalles relasjoner kalles ofte for mor-datter-koblinger. 
+Et objekt kan ha en assosiasjon til andre objekter, oftest i form av en komposisjon. Et ordinært vegskilt består for eksempel av ett skiltpunkt, som er komponert av flere skiltplater. I NVDB kalles denne type relasjoner ofte for *mor-datter-koblinger*. 
+
+(bilde: vegskilt)
 
 
 ### Historikk
 
-Objekter i NVDB-databasen slettes som hovedregel ikke. De settes i stedet historiske, ved at det angis en sluttdato. Dersom et objekt får en ny verdi på en egenskap, slettes ikke den eksisterende egenskapsverdien fra databasen. Det opprettes i stedet en ny versjon av objektet. Den eksisterende versjonen får en sluttdato, mens den nye versjonen får en tilsvarende startdato. Denne oppførselen kan overstyres, ved å spesifisere at det skal skje en korreksjon (feilretting), i stedet for en endring.
+Objekter i NVDB-databasen slettes som hovedregel ikke. De settes i stedet historiske, ved at det angis en sluttdato. Dersom et objekt får en ny verdi på en egenskap, slettes ikke den eksisterende egenskapsverdien fra databasen. Det opprettes i stedet en ny versjon av objektet. Den eksisterende versjonen får en sluttdato, mens den nye versjonen får en tilsvarende startdato.
 
-Unik NVDB objekt-id, en eller flere objektversjoner, gyldighetsperiode pr. objektversjon (start-/slutt-dato). Objekttyper osm er definert som ikke-tidsromrelevante (også kalt hendelser), har aldri mer enn én versjon, for eksempel trafikkulykke og skred. 
+Per dagens dato er det kun gyldige objektversjoner som eksponeres i NVDB API. I 2016 vil det utvikles støtte for historiske data.
 
 ## Vegnett
 
 For mer informasjon, les V770 Nasjonalt vegreferansesystem.
 
-## Under panseret
+## Arkitekturskisse
 
-Arkitekturskisse. 
+
+(bilde: katt i datamaskin)
