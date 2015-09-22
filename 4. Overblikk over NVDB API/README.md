@@ -1,6 +1,6 @@
 # Overblikk over NVDB API
 
-For å kunne ta i bruyk NVDB API på en effektiv måte, er det en fordel å ha kunnskap om hvordan NVDBs datamodell er bygd opp. 
+For å kunne ta i bruk NVDB API på en effektiv måte, er det en fordel å ha kunnskap om hvordan NVDBs datamodell er bygd opp. 
 
 Denne presentasjonen går gjennom følgende tema:
 
@@ -10,9 +10,10 @@ Denne presentasjonen går gjennom følgende tema:
 
 ## Innhold i NVDB
 
-NVDB inneholder Norges offisielle digitale vegnett, med både geometri og topologi. Vi vet hvor en veg befinner seg, og hvordan den henger sammen. 
+NVDB inneholder Norges offisielle digitale vegnett, med både *geometri* og *topologi*. Vegen kan plasseres på kart, og det er mulig å finne en rute mellom to punkter på vegnettet. 
 
-I tillegg inneholder NVDB mellom 300 og 400 typer vegobjekter, som er stedfestet til vegnettet. 
+Vegobjekter, som stedfestes til vegnettet, er den andre viktige delen av NVDB. Det finnes mellom 300 og 400 ulike typer vegobjekter, som inneholder verdifull informasjon om vegen. 
+
 
 Eksempel på vegobjekttyper:
 
@@ -27,24 +28,24 @@ Eksempel på vegobjekttyper:
 
 Vegobjekttypene kan deles inn i to kategorier:
 
-* Punktobjekttyper – Fagdata som normalt er koblet til vegnettet gjennom ett punkt
-*	Strekningsobjekttyper – Fagdata som er koblet til vegnettet over en strekning
+* *Punktobjekttyper* – Fagdata som normalt er koblet til vegnettet gjennom ett punkt
+* *Strekningsobjekttyper* – Fagdata som er koblet til vegnettet over en strekning
 
 
 ## Datakatalogen
 
-Innholdet i NVDB defineres i en egen metadatabase, som kalles Datakatalogen. 
+Hvilke typer vegobjekter som kan registreres i NVDB, defineres i en egen metadatabase, som kalles *datakatalogen*. 
 
-Datakatalogen inneholder  vegobjekttyper, med tilhørende egenskapstyper, tillatte verdier og assosiasjoner. Det finnes også styringsparametere, med et regelverk som enda mer detaljert beskriver hvordan et objekt kan, eller ikke kan registreres. 
+Datakatalogen inneholder *vegobjekttyper*, med tilhørende *egenskapstyper*, *tillatte verdier* og *assosiasjoner*. Det finnes også *styringsparametere*, som detaljert angir hvordan et objekt kan, eller ikke kan, registreres. 
 
-Alle vegobjekttyper, egenskapstuyper og tillatte verdier har en unik id. Vegobjekttypen Bomstasjon har for eksempel id lik 45. 
+Alle vegobjekttyper, egenskapstyper og tillatte verdier har en unik id. Vegobjekttypen _Bomstasjon_ har for eksempel id lik _45_. 
 
 I NVDB API skal det brukes id, og ikke navn, når det hentes en spesifikk vegobjekttype. 
 
 Mer informasjon:
 
-* http://tfprod1.sintef.no/datakatalog/ – Tekst
-* http://labs.vegdata.no/nvdb-datakatalog/ – Tekst
+* http://labs.vegdata.no/nvdb-datakatalog/ – Nettsted som inneholder de viktigste detaljene fra datakatalogen
+* http://tfprod1.sintef.no/datakatalog/ – Nedlastbar javaklient for komplett innsyn i datakatalogen
 
 
 ## Eksempel på vegobjekt
