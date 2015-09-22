@@ -28,3 +28,7 @@ Et fagdata-objekt i NVDB består av følgende:
 ## Historikk
 
 Objekter i NVDB-databasen slettes som hovedregel ikke. De settes i stedet historiske, ved at det angis en sluttdato. Dersom et objekt får en ny verdi på en egenskap, slettes ikke den eksisterende egenskapsverdien fra databasen. Det opprettes i stedet en ny versjon av objektet. Den eksisterende versjonen får en sluttdato, mens den nye versjonen får en tilsvarende startdato. Denne oppførselen kan overstyres, ved å spesifisere at det skal skje en korreksjon (feilretting), i stedet for en endring.
+
+## Under panseret
+
+Arkitekturskisse. 
