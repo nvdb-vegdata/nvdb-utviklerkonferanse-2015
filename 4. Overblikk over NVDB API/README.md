@@ -43,15 +43,22 @@ I NVDB API skal det brukes id, og ikke navn, når det hentes en spesifikk vegobj
 
 Mer informasjon:
 
-* dakat lite
-* dakat
+* http://tfprod1.sintef.no/datakatalog/ – Tekst
+* http://labs.vegdata.no/nvdb-datakatalog/ – Tekst
+
 
 ## Eksempel på vegobjekt
 
+Et vegobjekt har en unik id, og er av en bestemt vegobjekttype.
 
     {
         objektId: 487458621,
         objektTypeId: 45,
+    }
+
+Et vegobjekt har egenskaper med tilhørende verdier. Egenskapstypen er angitt ved navn og id. 
+
+    {   
         egenskaper: [
             {
                 id: 1078,
@@ -77,36 +84,10 @@ Mer informasjon:
                 id: 9391,
                 navn: "Navn bompengeanlegg",
                 verdi: "Miljøpakke Trondheim"
-            },
-            {
-                id: 9409,
-                navn: "Tidsdifferensiert takst",
-                verdi: "Ja"
-            },
-            {
-                id: 9412,
-                navn: "Timesregel",
-                verdi: "Ja"
-            },
-            {
-                id: 9414,
-                navn: "Innkrevningsretning",
-                verdi: "Begge retninger"
-            },
-            {
-                id: 9595,
-                navn: "Bomstasjon_Id",
-                verdi: "64"
-            },
-            {
-                id: 9596,
-                navn: "Bompengeanlegg_Id",
-                verdi: "16"
             }
         ]
     }
 
-La meg først gå inn på et typisk vegobjekt. Vegnettet kan vi diskutere senere. 
 
 Et fagdata-objekt i NVDB består av følgende:
 * Egenskaper med tilhørende verdier
