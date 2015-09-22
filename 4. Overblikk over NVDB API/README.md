@@ -88,6 +88,71 @@ Et vegobjekt har egenskaper med tilhørende verdier. Egenskapstypen er angitt ve
         ]
     }
 
+Et vegobjekt er koordinatfestet, som gjør at det kan vises på kart. Koordinatene er lagret i projeksjonen UTM33 i NVDB-databasen, men det er også mulig å hente WGS84-koordinater gjennom NVDB API. 
+
+    {
+        geometriUtm33: "POINT (271441.3500267718 7039309.464531345)",
+    }
+
+Et vegobjekt er stedfestet til vegnettets lenke-node-struktur.
+
+    {
+        veglenker: [
+            {
+                id: 42636,
+                fra: 0.822016,
+                til: 0.822016,
+                direction: "WITH",
+                felt: null,
+                sidepos: "NULL"
+            }
+        ]
+    }
+
+Et vegobjekt har vegreferanse, som er utledet fra stedfestingen til vegnettet. Vegreferansen ...
+
+    {
+        vegReferanser: [
+            {
+                fylke: 16,
+                kommune: 0,
+                kategori: "F",
+                status: "V",
+                nummer: 860,
+                hp: 1,
+                fraMeter: 688
+            }
+        ]
+    }
+
+Et vegobjekt har beliggenhet innenfor administrative områder, som er utledet fra stedfestingen til vegnettet. 
+
+    {
+        kommune: {
+            nummer: 1601,
+            navn: "TRONDHEIM"
+        },
+        fylke: {
+            nummer: 16,
+            navn: "SØR-TRØNDELAG"
+        },
+        region: {
+            nummer: 4,
+            navn: "MIDT"
+        },
+        vegAvdeling: {
+            nummer: 16,
+            navn: "Sør-Trøndelag"
+        }
+        kontraktsOmrade: [
+            {
+            navn: "1610 Trondheim Indre 2015-2020"
+            },
+            {
+            navn: "1609 TrondheimBydrift 2011-2015"
+            }
+        ]
+    }
 
 Et fagdata-objekt i NVDB består av følgende:
 * Egenskaper med tilhørende verdier
