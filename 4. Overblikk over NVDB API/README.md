@@ -1,15 +1,16 @@
-# Overblikk over Nasjonal vegdatabank og NVDB API
+# Overblikk over NVDB API
 
 For å kunne ta i bruyk NVDB API på en effektiv måte, er det en fordel å ha kunnskap om hvordan NVDBs datamodell er bygd opp. 
 
 Denne presentasjonen går gjennom følgende tema:
 
 * Innhold i NVDB
+* Datakatalogen
 
 
 ## Innhold i NVDB
 
-NVDB inneholder Norges offisielle digitale vegnett, med både geometri og topologi. Vi vet hvor en vegbefinner seg, og hvordan den henger sammen. 
+NVDB inneholder Norges offisielle digitale vegnett, med både geometri og topologi. Vi vet hvor en veg befinner seg, og hvordan den henger sammen. 
 
 I tillegg inneholder NVDB mellom 300 og 400 typer vegobjekter, som er stedfestet til vegnettet. 
 
@@ -38,15 +39,17 @@ Datakatalogen inneholder  vegobjekttyper, med tilhørende egenskapstyper, tillat
 
 Alle vegobjekttyper, egenskapstuyper og tillatte verdier har en unik id. Vegobjekttypen Bomstasjon har for eksempel id lik 45. 
 
+I NVDB API skal det brukes id, og ikke navn, når det hentes en spesifikk vegobjekttype. 
+
+Mer informasjon:
+
+* dakat lite
+* dakat
+
+## Eksemepl på vegobjekt
 
 
 
-
-* Bruk ider når dere spør APIet og leser responsen!
-
-
-
-## Et NVDB-objekt
 
 La meg først gå inn på et typisk vegobjekt. Vegnettet kan vi diskutere senere. 
 
