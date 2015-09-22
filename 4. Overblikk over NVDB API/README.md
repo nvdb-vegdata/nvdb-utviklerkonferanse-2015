@@ -183,6 +183,7 @@ Unik NVDB objekt-id, en eller flere objektversjoner, gyldighetsperiode pr. objek
 
 ## Vegnett
 
+For mer informasjon, les V770 Nasjonalt vegreferansesystem.
 
 ## Under panseret
 
