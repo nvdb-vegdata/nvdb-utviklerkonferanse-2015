@@ -9,7 +9,7 @@ NVDB API Skriv har følgende kjennetegn:
 * Basert på REST-prinsipper
 * Støtter både XML og JSON
 * Asynkront, status innhentes ved polling
-* Tilbyr CRUD-operasjoner på vegobjekter via endringssett
+* Tilbyr CRUD-operasjoner på vegobjekter i NVDB via endringssett
 
 ## Endringssett
  
@@ -36,9 +36,195 @@ Et endringssett kan inneholde alle CRUD-elementene om ønskelig. På rotelemente
  
 * **datakatalogversjon** - Angir datakatalogversjonen klienten har benyttet. Det gis advarsel dersom denne ikke gjeldende versjon i NVDB. 
 * **effektDato** - Angir hvilken dato endringene gjelder fra. Denne tolkes ulikt avhengig av operasjon:
-  * Registrer: startdato
-  * Oppdater: sluttdato/startdato
-  * Slett: sluttdato
-  * Korriger: n/a
+  * Registrer: Brukes som startdato for nye vegobjekter
+  * Oppdater: Brukes som sluttdato for forrige versjon og startdato for ny versjon
+  * Slett: Brukes som sluttdato for gjeldende versjon
+  * Korriger: Ingen betydning
   
-  
+### Endringssett - Registrer
+
+```xml
+...
+<registrer>
+   <vegObjekter>
+      <vegObjekt typeId="581" tempId="tunnel1">
+         <assosiasjoner>
+            ...
+         </assosiasjoner>
+         <egenskaper>
+            ...
+         </egenskaper>
+         <lokasjon>
+            ...
+         </lokasjon>
+      </vegObjekt>
+      ...
+   </vegObjekter>
+</registrer>
+...
+```
+
+Registrer-elementet definerer en eller flere ny vegobjekter for registrering i NVDB. Et nytt vegobjekt får en unik id i NVDB og gis versjonsnummer 1. Et vegObjekt består av:
+
+* **assosiasjoner** - Sammenkoblinger av mor- og datterobjekter, dersom det er relevant.
+* **egenskaper** - Et sett av egenskapsverdier for objektet.
+* **lokasjon** - Stedfesting av objektet på vegnettet.
+
+For hvert vegObjekt må følgende attributter angis:
+ 
+* **typeId** - Vegobjekttypens identifikator i datakatalogen.
+* **tempId** - En unik, egendefinert objektreferanse. Benyttes bl.a. i responser for å indikere hvilke vegobjekter som har valideringsfeil.
+
+#### Egenskaper
+
+```xml
+...
+<egenskaper>
+   <egenskap typeId="5225">
+      <verdi>Grevlingtunnelen</verdi>
+   </egenskap>
+   <egenskap typeId="9507">
+      <verdi>2013-01-17</verdi>
+   </egenskap>
+   <egenskap typeId="6891">
+      <verdi>srid=32633;POINT(265847 7044797)</verdi>
+   </egenskap>
+   ...
+</egenskaper>
+...
+```
+
+Egenskaper angir detaljerte opplysninger om vegobjektet. Ulike egenskaper forventer verdier av forskjellige datatyper: Streng, heltall, desimaltall,
+dato, klokkeslett m.fl. De to siste godtar verdier formatert som i NVDB Klient-API eller i tråd med ISO8601-standarden. Egengeometri er en egenskap
+på lik linje med andre og verdien her angis som en EWKT-streng.
+
+For hver egenskap må følgende attributter angis:
+ 
+* **typeId** - Egenskapstypens identifikator i datakatalogen.
+
+#### Lokasjon
+
+Vegobjekter stedfestes på NVDBs lenke-/nodestruktur, vegnettet (topologien), ikke via vegreferanser som i Klient-APIet. Datakatalogen avgjør om en
+vegobjekttype har punkt eller strekningstilknytning til vegnettet. En tredje stedfestingsvariant, sving, benyttes kun unntaksvis.
+
+Punkttilknytning angis slik:
+
+```xml
+...
+<lokasjon>
+   <punkt lenkeId="1125766" posisjon="0.3"/>
+</lokasjon>
+...
+```
+
+Strekningstilknytning angis slik:
+
+```xml
+...
+<lokasjon>
+   <linje lenkeId="676776" fra="0.0" til="0.34"/>
+</lokasjon>
+...
+```
+
+Dersom et objekt dekker flere lenker, kan punkt/linje repeteres innenfor lokasjon. Både punkt- og linje-elementer kan ha
+ytterligere attributter (om datakatalogen krever det):
+
+* **sidePosisjon** - Angir plassering av objektet på tvers av vegen.
+* **felt** - Angir plassering i kjørefelt.
+* **retning** - Angir om objektet er vendt mot en bestemt retning (i forhold til metreringsretning).
+
+#### Assosiasjoner
+
+Assosiasjoner kobler sammen mor- og datterobjekter i hierarkier. Morobjektet angir sine datterobjekter, ikke omvendt.
+
+```xml
+...
+<assosiasjoner>
+   <assosiasjon typeId="220711">
+      <tempId>tunnelløp1</tempId>
+   </assosiasjon>
+</assosiasjoner>
+...
+```
+
+Subelementet tempId indikerer at et annet vegobjekt i samme endringssett skal kobles til som datterobjekt. Dersom man ønsker å koble til
+et allerede eksisterende vegobjekt i NVDB, angis dennes id med subelementet nvdbId.
+
+For hver assosiasjon må følgende attributter angis:
+ 
+* **typeId** - Sammenkoblingstypens identifikator i datakatalogen.
+
+### Endringssett - Oppdater
+
+```xml
+...
+<oppdater>
+   <vegObjekter>
+      <vegObjekt typeId="581" nvdbId="551800127" versjon="1">
+         ...
+      </vegObjekt>
+      ...
+   </vegObjekter>
+</oppdater>
+...
+```
+
+En oppdatering endrer et eksisterende vegobjekt i NVDB, og etablerer en ny versjon av objektet med endringene. Det er kun gjeldende versjon
+av et vegobjekt som kan oppdateres, ikke tidligere versjoner. Oppdatering av en versjon som ikke er gjeldende blir avvist.
+
+For hvert vegobjekt som skal oppdaters må følgende attributter angis:
+
+* **typeId** - Vegobjekttypens identifikator i datakatalogen.
+* **nvdbId** - Vegobjektets id i NVDB.
+* **versjon** - Antatt gjeldende versjon av vegobjektet.
+
+### Endringssett - Slett
+
+```xml
+...
+<slett>
+   <vegObjekter>
+      <vegObjekt typeId="234" nvdbId="91610862" versjon="1" kaskadeSletting="ja"/>
+      ...
+   </vegObjekter>
+</slett>
+...
+```
+
+Sletting innebærer at gjeldende versjon av et vegobjekt lukkes, det vil si at sluttdato settes. Det er kun gjeldende versjon
+av et vegobjekt som kan slettes. Sletting av en versjon som ikke er gjeldende blir avvist.
+
+For hvert vegobjekt som skal oppdaters må følgende attributter angis:
+
+* **typeId** - Vegobjekttypens identifikator i datakatalogen.
+* **nvdbId** - Vegobjektets id i NVDB.
+* **versjon** - Antatt gjeldende versjon av vegobjektet.
+* **kaskadeSletting** - Angir om underordnede datterobjekter automatisk skal slettes.
+
+Dersom kaskadeSletting settes til "nei" blir endringssettet avvist hvis det finnes datterobjekter i en komposisjonssammenheng (sterk binding),
+fordi slike objekter alltid må et morobjekt.
+
+### Endringssett - Korriger
+
+```xml
+...
+<korriger>
+   <vegObjekter>
+      <vegObjekt typeId="581" nvdbId="551800127" versjon="1">
+         ...
+      </vegObjekt>
+      ...
+   </vegObjekter>
+</korriger>
+...
+```
+
+Korrigering innebærer at man kan endre et eksisterende vegobjekt uten å lage en ny versjon. Denne varianten krever at bruker har
+system-admin-rollen og er derfor ikke for "folk flest". Det er kun gjeldende versjon av et vegobjekt som kan korrigeres. Korrigering av en versjon som ikke er gjeldende blir avvist.
+
+Utforming av korriger-elementet er ellers identisk med oppdater-elementet.
+
+## Arbeidsflyt for en klient
+
+![alt text](https://github.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/tree/master/6.%20Skrive%20data%20til%20NVDB/Sekvenser.png "Sekvensdiagram arbeidsflyt")
