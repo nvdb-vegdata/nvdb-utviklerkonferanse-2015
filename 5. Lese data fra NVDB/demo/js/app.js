@@ -101,6 +101,7 @@ var get = function(url, callback) {
   oReq.onreadystatechange = function (aEvt) {
   if (oReq.readyState == 4) {
      if(oReq.status == 200) {
+       prettyPrint(JSON.parse(oReq.responseText));
        var sokeResponse = JSON.parse(oReq.responseText);
        callback(sokeResponse);
      } else {
@@ -109,6 +110,13 @@ var get = function(url, callback) {
     }
   };
   oReq.send();
+}
+
+var prettyPrint = function(json) {
+  var element = document.getElementById("jsonoutput");
+  clearNode(element);
+  var output = createNodeWithText("pre", JSON.stringify(json, null, 2));
+  element.appendChild(output);
 }
 
 var performSearch = function(kriterie, select, callback) {

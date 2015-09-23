@@ -1,1 +1,10 @@
-#map { height: 300px; }
+#map {
+  height: 300px;
+}
+
+#jsonoutput {
+  float: right;
+  width: 40%;
+  max-height: 1000px;
+  overflow: auto;
+}
