@@ -227,4 +227,7 @@ Utforming av korriger-elementet er ellers identisk med oppdater-elementet.
 
 ## Arbeidsflyt for en klient
 
-![Sekvensdiagram arbeidsflyt](https://github.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/blob/master/6.%20Skrive%20data%20til%20NVDB/Sekvenser.png)
+![Sekvensdiagram](https://github.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/blob/master/6.%20Skrive%20data%20til%20NVDB/Sekvenser.png)
+## Behandlingstilstander
+
+![Tilstandsdiagram](https://github.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/blob/master/6.%20Skrive%20data%20til%20NVDB/Tilstander.png)
