@@ -115,10 +115,10 @@ var performSearch = function(kriterie, select, callback) {
   get("https://www.vegvesen.no/nvdb/api/sok?kriterie=" + encodeURIComponent(JSON.stringify(kriterie)) + "&select=" + encodeURIComponent(select), callback)
 }
 
-var createCriteria = function(objektTypeId, year, type) {
+var createCriteria = function(objektTypeId, year, type, county) {
   return {
     lokasjon: {
-      fylke: [20],
+      fylke: [county],
       srid:"wgs84"
    },
    objektTyper:[{
@@ -133,12 +133,23 @@ var createCriteria = function(objektTypeId, year, type) {
 
 var select = 'objektId,objektTypeId,vegObjektLokasjon/vegReferanser,vegObjektLokasjon/geometriWgs84';
 
-var updateYear = function(val) {
-  document.getElementById("timelineText").textContent = val;
-  performSearch(createCriteria(445, val, "Skred dato"), select, function(features) {
+var updateYear = function() {
+  var county = parseInt(document.getElementById("county").value);
+  var year = document.getElementById("timeline").value;
+
+  document.getElementById("timelineText").textContent = year;
+  performSearch(createCriteria(445, year, "Skred dato", county), select, function(features) {
     drawFeatures(features, skredLayers, "#009");
   });
-  performSearch(createCriteria(67, val, "Åpningsår"), select, function(features) {
+  performSearch(createCriteria(67, year, "Åpningsår", county), select, function(features) {
     drawFeatures(features, tunnelLayers, "#B09");
   });
 }
+
+document.getElementById("timeline").addEventListener("change", function() {
+  updateYear();
+});
+
+document.getElementById("county").addEventListener("change", function(e) {
+  updateYear();
+});
