@@ -24,10 +24,10 @@ var updateYear = function() {
 
   document.getElementById("timelineText").textContent = year;
   performSearch(createCriteria(445, year, "Skred dato", county), function(features) {
-    drawFeatures(features, skredLayers, "#009");
+    drawSkred(features);
   });
   performSearch(createCriteria(67, year, "Åpningsår", county), function(features) {
-    drawFeatures(features, tunnelLayers, "#B09");
+    drawTunnels(features);
   });
 }
 

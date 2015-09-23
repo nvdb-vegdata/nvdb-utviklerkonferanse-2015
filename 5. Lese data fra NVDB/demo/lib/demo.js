@@ -40,6 +40,14 @@ new L.tileLayer(kartcache, {
 var skredLayers = L.layerGroup().addTo(map);
 var tunnelLayers = L.layerGroup().addTo(map);
 
+var drawTunnels = function(sokeResponse) {
+  drawFeatures(sokeResponse, tunnelLayers, "#B09");
+}
+
+var drawSkred = function(sokeResponse) {
+  drawFeatures(sokeResponse, skredLayers, "#009");
+}
+
 var drawFeatures = function(sokeResponse, layerGroup, color) {
   layerGroup.clearLayers();
   var features  = sokeResponse.resultater[0].vegObjekter;
