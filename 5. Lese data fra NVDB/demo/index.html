@@ -17,106 +17,40 @@
 
   <div>
     <label for="timeline">Se snøskred fra og med år: </label>
-    <input id="timeline" type="range" min="1990" max="2015" step="1" value="1990" onchange="updateYear(this.value)" />
+    <input id="timeline" type="range" min="1990" max="2015" step="1" value="1990" />
     <span id="timelineText">1900</span>
  </div>
 
-  <script type="text/javascript">
-    // Map projection
-    var crs = new L.Proj.CRS('EPSG:25833', '+proj=utm +zone=33 +ellps=GRS80 +units=m +no_defs ',
-     {
-       origin: [-2500000.0, 9045984.0],
-       resolutions: [
-         21674.7100160867,
-         10837.35500804335,
-         5418.677504021675,
-         2709.3387520108377,
-         1354.6693760054188,
-         677.3346880027094,
-         338.6673440013547,
-         169.33367200067735,
-         84.66683600033868,
-         42.33341800016934,
-         21.16670900008467,
-         10.583354500042335,
-         5.291677250021167,
-         2.6458386250105836,
-         1.3229193125052918,
-         0.6614596562526459,
-         0.33072982812632296,
-         0.1653649140631615
-       ]
-     });
+ <div>
+   <label for="county">Velg fylke</label>
+   <select id="county" name="Velg fylke">
+     <option value="1">Østfold</option>
+     <option value="2">Akershus</option>
+     <option value="3">Oslo</option>
+     <option value="4">Hedmark</option>
+     <option value="5">Oppland</option>
+     <option value="6">Buskerud</option>
+     <option value="7">Vestfold</option>
+     <option value="8">Telemark</option>
+     <option value="9">Aust-agder</option>
+     <option value="10">Vest-agder</option>
+     <option value="11">Rogaland</option>
+     <option value="12">Hordaland</option>
+     <option value="14">Sogn og Fjordane</option>
+     <option value="15">Møre og Romsdal</option>
+     <option value="16">Sør-trøndelag</option>
+     <option value="17">Nord-trøndelag</option>
+     <option value="18">Nordland</option>
+     <option value="19">Troms</option>
+     <option value="20">Finnmark</option>
+   </select>
+ </div>
 
-    var kartcache = 'http://m{s}.nvdbcache.geodataonline.no/arcgis/rest/services/Trafikkportalen/GeocacheTrafikkJPG/MapServer/tile/{z}/{y}/{x}';
-    var map = L.map('map', {crs: crs}).setView([63.43, 10.40], 3);
+ <aside id="objektdetaljer"></aside>
+ <aside id="jsonoutput"></aside>
 
-    // Initialize map
-    new L.tileLayer(kartcache, {
-          maxZoom: 17,
-          maxNativeZoom: 16,
-          minZoom: 3,
-          subdomains: '123456789',
-          continuousWorld: true,
-          attribution: 'NVDB Utviklerkonferanse'
-        }).addTo(map);
-
-    var skredLayers = L.layerGroup().addTo(map);
-    var tunnelLayers = L.layerGroup().addTo(map);
-
-    var drawFeatures = function(sokeResponse, layerGroup, color) {
-      layerGroup.clearLayers();
-      var features  = sokeResponse.resultater[0].vegObjekter;
-      if (Array.isArray(features)) {
-        features.forEach(function(feature) {
-          var feature = omnivore.wkt.parse(feature.lokasjon.geometriWgs84)
-          feature.setStyle({color: color});
-          layerGroup.addLayer(feature);
-        });
-      }
-    }
-
-    var performSearch = function(kriterie, select, layerGroup, color, callback) {
-      var oReq = new XMLHttpRequest();
-      oReq.open("GET", "https://www.vegvesen.no/nvdb/api/sok?kriterie=" + encodeURIComponent(JSON.stringify(kriterie)) + "&select=" + encodeURIComponent(select));
-      oReq.onreadystatechange = function (aEvt) {
-      if (oReq.readyState == 4) {
-         if(oReq.status == 200) {
-           var sokeResponse = JSON.parse(oReq.responseText);
-           callback(sokeResponse, layerGroup, color);
-         } else {
-           console.log("ERROR loading skred from API");
-         }
-        }
-      };
-      oReq.send();
-    }
-
-    var createCriteria = function(objektTypeId, year, type) {
-      return {
-        lokasjon: {
-          kommune:[2019],
-          srid:"wgs84"
-       },
-       objektTyper:[{
-         id:objektTypeId,
-         antall:"1000",
-         filter:[
-           {"type":type,"operator":">=","verdi":[type === "Skred dato" ? "1990-01-01" : "1990"]},
-           {"type":type,"operator":"<=","verdi":[type === "Skred dato" ? year + "-01-01" : year]}
-         ]
-       }]};
-    }
-
-    var select = 'objektId,objektTypeId,vegObjektLokasjon/vegReferanser,vegObjektLokasjon/geometriWgs84';
-
-    var updateYear = function(val) {
-      document.getElementById("timelineText").textContent = val;
-      performSearch(createCriteria(445, val, "Skred dato"), select, skredLayers, "#193", drawFeatures);
-      performSearch(createCriteria(67, val, "Åpningsår"), select, tunnelLayers, "#00b", drawFeatures);
-    }
-
-  </script>
+  <script type="text/javascript" src="lib/demo.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 </body>
 
 </html>

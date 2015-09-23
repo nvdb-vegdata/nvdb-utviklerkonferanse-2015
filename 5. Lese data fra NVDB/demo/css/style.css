@@ -1,1 +1,14 @@
-#map { height: 300px; }
+#map {
+  height: 300px;
+}
+
+#objektdetaljer{
+  float: left;
+}
+
+#jsonoutput {
+  float: right;
+  width: 40%;
+  max-height: 1000px;
+  overflow: auto;
+}
