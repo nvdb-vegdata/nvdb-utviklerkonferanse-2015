@@ -190,7 +190,7 @@ Per dagens dato er det kun gyldige objektversjoner som eksponeres i NVDB API. I 
 
 ## Vegnett
 
-For mer informasjon, les [Håndbok V830 Nasjonalt vegreferansesystem](https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CBwQFjAAahUKEwiltMTymo_IAhVHvnIKHZMeDDA&url=http%3A%2F%2Fwww.vegvesen.no%2F_attachment%2F61505%2Fbinary%2F1000471%3Ffast_title%3DH%25C3%25A5ndbok%2BV830%2BNasjonalt%2Bvegreferansesystem.pdf&usg=AFQjCNEaT2vdqxrSIko5AGm66xcab3aLWg&sig2=uhLsRwOh5IhfQZwwjdI-FQ&bvm=bv.103627116,d.bGQ).
+For mer informasjon, les [Håndbok V830 Nasjonalt vegreferansesystem](http://www.vegvesen.no/_attachment/61505/binary/1000471?fast_title=H%C3%A5ndbok+V830+Nasjonalt+vegreferansesystem.pdf).
 
 ## Arkitekturskisse
 
