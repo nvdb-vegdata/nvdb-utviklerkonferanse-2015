@@ -186,6 +186,15 @@ Et objekt kan ha en assosiasjon til andre objekter, oftest i form av en komposis
 
 Objekter i NVDB-databasen slettes som hovedregel ikke. De settes i stedet historiske, ved at det angis en sluttdato. Dersom et objekt får en ny verdi på en egenskap, slettes ikke den eksisterende egenskapsverdien fra databasen. Det opprettes i stedet en ny versjon av objektet. Den eksisterende versjonen får en sluttdato, mens den nye versjonen får en tilsvarende startdato.
 
+    {
+        "objektId":89248612,
+        "objektTypeId":22,
+        "versjonsId":3,
+        "startDato":"2015-09-01",
+        "sluttDato":"2019-09-01"
+    }
+
+
 Per dagens dato er det kun gyldige objektversjoner som eksponeres i NVDB API. I 2016 vil det utvikles støtte for historiske data.
 
 ## Vegnett
