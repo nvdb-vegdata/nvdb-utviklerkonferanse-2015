@@ -18,51 +18,44 @@ at første versjon av NVDB API ble satt i produksjon desember 2012.
 
 ![NVDB Datakatalog](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/nvdbdatakatalog.png)
 
-http://labs.vegdata.no/nvdb-datakatalog/
+* http://labs.vegdata.no/nvdb-datakatalog/
 
 ## Visning av NVDB-data i QGIS
 
 ![QGIS-plugin](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/qgis.png)
 
-https://github.com/haugsand/nvdb-qgis
+* https://github.com/haugsand/nvdb-qgis
 
 ## Ny rapportgenerator
 
 ![NVDB Rapporter](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/nvdbrapporter.png)
 
-http://labs.vegdata.no/nvdb-rapporter/
+* http://labs.vegdata.no/nvdb-rapporter/
 
 ## Måling av datakvalitet i NVDB
 
 ![Kontoutskrift](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/kontoutskrift.png)
 
-http://labs.vegdata.no/kontoutskrift/
+* http://labs.vegdata.no/kontoutskrift/
 
 ## Visning av vegreferanse
 
 ![Vegviseren](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/vegviseren.png)
 
-http://labs.vegdata.no/vegviseren2/
+* http://labs.vegdata.no/vegviseren2/
 
 ## Registratordemonstrator
 
 ![Registratordemonstrator](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/registratordemonstrator.png)
 
-http://labs.vegdata.no/registratordemonstrator/
+* http://labs.vegdata.no/registratordemonstrator/
 
-## NVDB API 
+## Vil NVDB API nøste opp i flokene våre?
 
-Løser alle våre problemer med integrasjon
-
-Klare prinsipper, avgrensning av ansvar. Fokus på å levere data. Legger til flere muligheter til å avgrense søket, områder og egenskaper. 
-
-!!! (systemskisse.png)
+![Vegviseren](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/nvdbomkringliggende.png)
 
 
-## Vegen videre
-
-Vi har lært mye underveis. Prøve og feile. 
-Dette er tjenester vi selv bruker, og aktivt videreutvikler!
+## En oppfordrning
 
 La dere inspirere til å lage kreative og nyttige løsninger for andre!
 
