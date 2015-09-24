@@ -1,53 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 
   <script src="lib/proj4.js"></script>
   <script src="lib/proj4leaflet.js"></script>
-  <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+  <script src="lib/omnivore.js"></script>
 </head>
 
 <body>
-
   <div id="map"></div>
 
-  <div>
-    <label for="timeline">Se snøskred fra og med år: </label>
-    <input id="timeline" type="range" min="1990" max="2015" step="1" value="1990" />
-    <span id="timelineText">1900</span>
- </div>
+  <div class="wrap0">
+    <div class="controllers leftContent">
+      <div>
+        <h1>Demo app</h1>
+        <label for="timeline">Se snøskred fra og med år: </label>
+        <input id="timeline" type="range" min="1990" max="2015" step="1" value="1990">
+        <span id="timelineText">1900</span>
+      </div>
 
- <div>
-   <label for="county">Velg fylke</label>
-   <select id="county" name="Velg fylke">
-     <option value="1">Østfold</option>
-     <option value="2">Akershus</option>
-     <option value="3">Oslo</option>
-     <option value="4">Hedmark</option>
-     <option value="5">Oppland</option>
-     <option value="6">Buskerud</option>
-     <option value="7">Vestfold</option>
-     <option value="8">Telemark</option>
-     <option value="9">Aust-agder</option>
-     <option value="10">Vest-agder</option>
-     <option value="11">Rogaland</option>
-     <option value="12">Hordaland</option>
-     <option value="14">Sogn og Fjordane</option>
-     <option value="15">Møre og Romsdal</option>
-     <option value="16">Sør-trøndelag</option>
-     <option value="17">Nord-trøndelag</option>
-     <option value="18">Nordland</option>
-     <option value="19">Troms</option>
-     <option value="20">Finnmark</option>
-   </select>
- </div>
+      <label for="county">Velg fylke</label>
 
- <aside id="objektdetaljer"></aside>
- <aside id="jsonoutput"></aside>
+      <select id="county" name="Velg fylke">
+        <option value="2">Akershus</option>
+        <option value="9">Aust-agder</option>
+        <option value="6">Buskerud</option>
+        <option value="20">Finnmark</option>
+        <option value="4">Hedmark</option>
+        <option value="12">Hordaland</option>
+        <option value="15">Møre og Romsdal</option>
+        <option value="17">Nord-trøndelag</option>
+        <option value="18">Nordland</option>
+        <option value="5">Oppland</option>
+        <option value="3">Oslo</option>
+        <option value="11">Rogaland</option>
+        <option value="14">Sogn og Fjordane</option>
+        <option value="16">Sør-trøndelag</option>
+        <option value="8">Telemark</option>
+        <option value="19">Troms</option>
+        <option value="10">Vest-agder</option>
+        <option value="7">Vestfold</option>
+        <option value="1">Østfold</option>
+      </select>
+      
+      <aside id="objektdetaljer"></aside>
+    </div>
+
+    <div class="rightContent">
+      <aside id="jsonoutput"></aside>
+    </div>
+  </div>
 
   <script type="text/javascript" src="lib/demo.js"></script>
   <script type="text/javascript" src="js/app.js"></script>

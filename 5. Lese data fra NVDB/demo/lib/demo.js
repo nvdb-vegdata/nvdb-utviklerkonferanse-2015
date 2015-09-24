@@ -114,6 +114,7 @@ var listDetails = function(objektId, callback) {
 var get = function(url, callback) {
   var oReq = new XMLHttpRequest();
   oReq.open("GET", url);
+  oReq.setRequestHeader("Accept","application/vnd.vegvesen.nvdb-v1+json");
   oReq.onreadystatechange = function (aEvt) {
   if (oReq.readyState == 4) {
      if(oReq.status == 200) {
@@ -129,9 +130,10 @@ var get = function(url, callback) {
 }
 
 document.getElementById("timeline").addEventListener("change", function(e) {
+  document.getElementById("timelineText").textContent = e.target.value;
   timeLineUpdate(e.target.value);
 });
 
 document.getElementById("county").addEventListener("change", function(e) {
-  countyUpdate(e.target.value)
+  countyUpdate(e.target.value);
 });

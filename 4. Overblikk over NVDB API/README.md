@@ -190,9 +190,9 @@ Per dagens dato er det kun gyldige objektversjoner som eksponeres i NVDB API. I 
 
 ## Vegnett
 
-For mer informasjon, les V770 Nasjonalt vegreferansesystem.
+For mer informasjon, les [Håndbok V830 Nasjonalt vegreferansesystem](http://www.vegvesen.no/_attachment/61505/binary/1000471?fast_title=H%C3%A5ndbok+V830+Nasjonalt+vegreferansesystem.pdf).
 
 ## Arkitekturskisse
 
+![Arkitektur](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/4.%20Overblikk%20over%20NVDB%20API/arkitektur.jpg)
 
-(bilde: katt i datamaskin)
