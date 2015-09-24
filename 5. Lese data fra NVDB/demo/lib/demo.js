@@ -129,9 +129,10 @@ var get = function(url, callback) {
 }
 
 document.getElementById("timeline").addEventListener("change", function(e) {
+  document.getElementById("timelineText").textContent = e.target.value;
   timeLineUpdate(e.target.value);
 });
 
 document.getElementById("county").addEventListener("change", function(e) {
-  countyUpdate(e.target.value)
+  countyUpdate(e.target.value);
 });
