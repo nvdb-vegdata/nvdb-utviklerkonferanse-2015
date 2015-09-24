@@ -17,31 +17,37 @@ at første versjon av NVDB API ble satt i produksjon desember 2012.
 ## Visning av NVDB Datakatalog
 
 ![NVDB Datakatalog](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/nvdbdatakatalog.png)
+
 http://labs.vegdata.no/nvdb-datakatalog/
 
 ## Visning av NVDB-data i QGIS
 
 ![QGIS-plugin](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/qgis.png)
+
 https://github.com/haugsand/nvdb-qgis
 
 ## Ny rapportgenerator
 
 ![NVDB Rapporter](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/nvdbrapporter.png)
+
 http://labs.vegdata.no/nvdb-rapporter/
 
 ## Måling av datakvalitet i NVDB
 
 ![Kontoutskrift](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/kontoutskrift.png)
+
 http://labs.vegdata.no/kontoutskrift/
 
 ## Visning av vegreferanse
 
 ![Vegviseren](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/vegviseren.png)
+
 http://labs.vegdata.no/vegviseren2/
 
 ## Registratordemonstrator
 
 ![Registratordemonstrator](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/registratordemonstrator.png)
+
 http://labs.vegdata.no/registratordemonstrator/
 
 ## NVDB API 
