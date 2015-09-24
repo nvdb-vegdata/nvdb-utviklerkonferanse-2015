@@ -16,7 +16,7 @@ at første versjon av NVDB API ble satt i produksjon desember 2012.
 
 ## Visning av NVDB Datakatalog
 
-!!! (datakatalog.png)
+(nvdbdatakatalog.png)
 http://labs.vegdata.no/nvdb-datakatalog/
 
 ## Visning av NVDB-data i QGIS
@@ -31,7 +31,7 @@ http://labs.vegdata.no/nvdb-rapporter/
 
 ## Måling av datakvalitet i NVDB
 
-!!! (kontoutskrift.png)
+(kontoutskrift.png)
 http://labs.vegdata.no/kontoutskrift/
 
 ## Visning av vegreferanse
