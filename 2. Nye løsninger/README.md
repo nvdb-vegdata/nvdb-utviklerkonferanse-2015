@@ -1,17 +1,17 @@
 # Nye løsninger muliggjort med NVDB API
 
 De siste årene har det vært økt fokus på tilgjengeliggjøring på offentlige data, 
-og antall tjenester og datasett på [data.norge.no](http://data.norge.no) har økt vesentlig. 
+og det kommer flere og flere tjenester og datasett på [data.norge.no](http://data.norge.no). 
 
 NVDB API ble ikke først og fremst utviklet for å dele våre verdifulle data med omverdenen, 
-men er et resultat av at vi i 2011 ønsket oss en moderne, rask og brukervennlig kartklient 
-som i dag er kjent som [Vegkart](http://www.vegkart.no).
+men er en konsekvens av at vi i 2011 ønsket oss en moderne, rask og brukervennlig kartklient. 
+Resultatet er i dag er kjent som [Vegkart](http://www.vegkart.no).
 
 APIet var i utgangspunktet kun ment å levere data til Vegkart, men vi oppdaget raskt 
 hvilke muligheter et REST-basert grensesnitt ga oss.
 
 Denne presentasjonen inneholder eksempler på verktøy vi selv har utviklet etter 
-at første versjon av NVDB API ble satt i produksjon desember 2012. 
+at første versjon av NVDB API ble satt i produksjon i desember 2012. 
 
 
 ## Visning av NVDB Datakatalog
@@ -55,7 +55,7 @@ at første versjon av NVDB API ble satt i produksjon desember 2012.
 ![Vegviseren](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/2.%20Nye%20løsninger/nvdbomkringliggende.png)
 
 
-## En oppfordrning
+## En oppfordring
 
 La dere inspirere til å lage kreative og nyttige løsninger for andre!
 
