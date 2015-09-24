@@ -220,14 +220,28 @@ fordi slike objekter alltid må et morobjekt.
 ...
 ```
 
-Korrigering innebærer at man kan endre et eksisterende vegobjekt uten å lage en ny versjon. Denne varianten krever at bruker har
+Korrigering innebærer at man endrer et eksisterende vegobjekt uten å lage en ny versjon. Denne varianten krever at bruker har
 system-admin-rollen og er derfor ikke for "folk flest". Det er kun gjeldende versjon av et vegobjekt som kan korrigeres. Korrigering av en versjon som ikke er gjeldende blir avvist.
 
 Utforming av korriger-elementet er ellers identisk med oppdater-elementet.
 
 ## Arbeidsflyt for en klient
 
+Sekvensdiagrammer under angir hvordan en klient kommuniserer med APIet for å registrere, starte og innhente status for et endringssett:
+
 ![Sekvensdiagram](https://github.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/blob/master/6.%20Skrive%20data%20til%20NVDB/Sekvenser.png)
+
 ## Behandlingstilstander
 
+Et endringssett under behandling vil ha ulike tilstander eller fremdriftsstatuser underveis:
+
 ![Tilstandsdiagram](https://github.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/blob/master/6.%20Skrive%20data%20til%20NVDB/Tilstander.png)
+
+| Tilstand      | Trigger        | Kommentar      |
+|---------------|----------------|----------------|
+| IKKE_STARTET  | Mottak av endringssett | Endringssettet er mottatt, men ikke behandlingen er ikke startet. Det kan fortsatt endres. |
+| KANSELLERT    | /kanseller anropt | Endringssettet er mottatt, men behandlingen ble kansellert av eier. |
+| BEHANDLES     | /start eller /restart anropt | Behandlingen av endringssettet er startet. Endringssettet kontrolleres mot datakatalogen og eksisterende objekter i NVDB. |
+| VENTER        | Låsekonflikt/datakatalogoppdatering | Behandlingen av endringssettet er stanset og venter på å kunne starte igjen. |
+| AVVIST        | Valideringsfeil eller manglende autoriasjon | Endringssettet er avvist. Det vil ikke bli fullført. |
+| UTFØRT        | Fullført behandling uten feil eller konflikter | Endringssettet er ferdig behandlet og alle vegobjekter er lagret i NVDB. |
