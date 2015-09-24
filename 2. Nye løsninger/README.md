@@ -1,41 +1,48 @@
 # Nye løsninger muliggjort med NVDB API
 
+De siste årene har det vært økt fokus på tilgjengeliggjøring på offentlige data, 
+og antall tjenester og datasett på [data.norge.no](http://data.norge.no) har økt vesentlig. 
 
+NVDB API ble ikke først og fremst utviklet for å dele våre verdifulle data med omverdenen, 
+men er et resultat av at vi i 2011 ønsket oss en moderne, rask og brukervennlig kartklient 
+som i dag er kjent som [Vegkart](http://www.vegkart.no).
 
-La vår utnyttelse 
+APIet var i utgangspunktet kun ment å levere data til Vegkart, men vi oppdaget raskt 
+hvilke muligheter et REST-basert grensesnitt ga oss.
 
-## Bakgrunn
+Denne presentasjonen inneholder eksempler på verktøy vi selv har utviklet etter 
+at første versjon av NVDB API ble satt i produksjon desember 2012. 
 
-Vi skulle offentliggjøre data fra nvdb i en kartløsning, og valgte et rest-basert api. 
-Åpent av praktiske grunner.
-
-Men, vi så muligheter
 
 ## Visning av NVDB Datakatalog
 
-Trengte en datakatalogvisning, så lagde en
+!!! (datakatalog.png)
+http://labs.vegdata.no/nvdb-datakatalog/
 
 ## Visning av NVDB-data i QGIS
 
-Trengte å lage egen symbolisering, så vi lagde en qgis-plugin
+(qgis.png)
+https://github.com/haugsand/nvdb-qgis
 
 ## Ny rapportgenerator
 
-Trengte å ha aggregerte rapporter, så vi lagde en rapportgenerator
+(nvdbrapporter.png)
+http://labs.vegdata.no/nvdb-rapporter/
 
 ## Måling av datakvalitet i NVDB
 
-Vi ville vite kvalitet å data i nvdb, så vi lagde en kontoutskrift.
+!!! (kontoutskrift.png)
+http://labs.vegdata.no/kontoutskrift/
 
 ## Visning av vegreferanse
 
-Vi ville vite vegreferanse, og ta et bilde, så vi lagde det også
+(vegviseren.png)
+http://labs.vegdata.no/vegviseren2/
 
 ## Registratordemonstrator
 
-Vi vil ha brukervennlige applikasjoner for å registrere data, så vi lagde en demonstrator
-
-Det var gøy, så vi lagde enda en
+(registratordemonstrator.png)
+http://labs.vegdata.no/registratordemonstrator/
 
 ## NVDB API 
 
@@ -43,8 +50,13 @@ Løser alle våre problemer med integrasjon
 
 Klare prinsipper, avgrensning av ansvar. Fokus på å levere data. Legger til flere muligheter til å avgrense søket, områder og egenskaper. 
 
+!!! (systemskisse.png)
+
+
 ## Vegen videre
 
 Vi har lært mye underveis. Prøve og feile. 
 Dette er tjenester vi selv bruker, og aktivt videreutvikler!
+
+La dere inspirere til å lage kreative og nyttige løsninger for andre!
 
