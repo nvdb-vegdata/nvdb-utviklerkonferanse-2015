@@ -194,5 +194,5 @@ For mer informasjon, les V770 Nasjonalt vegreferansesystem.
 
 ## Arkitekturskisse
 
-![Arkitektur](https://github.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/blob/master/4.%20Overblikk%20over%20til%20NVDB%20API/arkitektur.jpg)
+![Arkitektur](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/4.%20Overblikk%20over%20NVDB%20API/arkitektur.jpg)
 
