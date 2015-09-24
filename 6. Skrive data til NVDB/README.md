@@ -231,9 +231,12 @@ Sekvensdiagrammer under angir hvordan en klient kommuniserer med APIet for å re
 
 ![Sekvensdiagram](https://github.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/blob/master/6.%20Skrive%20data%20til%20NVDB/Sekvenser.png)
 
+Når endringssettet er registrert (første anrop i diagrammet over), tildeles det en unik id (UUID) som inngår i URI'ene man benytter for videre samhandling om dette endringssettet.
+Polling på fremdrift kan opphøre når endringssettet har nådd en terminaltilstand. 
+
 ## Behandlingstilstander
 
-Et endringssett under behandling vil ha ulike tilstander eller fremdriftsstatuser underveis:
+Et endringssett under behandling vil ha ulike tilstander eller fremdriftsstatuser underveis. Det er denne fremdriftsstatusen man får som respons ved anrop til /nvdb/apiskriv/v2/{id}/fremdrift.
 
 ![Tilstandsdiagram](https://github.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/blob/master/6.%20Skrive%20data%20til%20NVDB/Tilstander.png)
 
