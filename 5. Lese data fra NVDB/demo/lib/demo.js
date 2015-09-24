@@ -114,6 +114,7 @@ var listDetails = function(objektId, callback) {
 var get = function(url, callback) {
   var oReq = new XMLHttpRequest();
   oReq.open("GET", url);
+  oReq.setRequestHeader("Accept","application/vnd.vegvesen.nvdb-v1+json");
   oReq.onreadystatechange = function (aEvt) {
   if (oReq.readyState == 4) {
      if(oReq.status == 200) {
