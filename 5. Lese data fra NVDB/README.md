@@ -363,9 +363,9 @@ Eksempel på henting av regioner:
 
 # Krav til workshop
 
-* Pc/mac
-* Teksteditor, f.eks sublimetext 2 eller atom
-* Chrome eller firefox nettleser. Vi kjenner chrome best.
+* Datamaskin
+* Teksteditor, f.eks sublimetext eller atom
+* Nettleser (testet i Chrome og Firefox)
 * Internett-tilkobling
 
 ## Oppgaver
