@@ -392,3 +392,5 @@ Tegn opp skred innenfor samme fylke, og med samme dato-filter, som med tunnellø
 ### Oppgave 4 (Vanskelig)
 
 Bruk datakatalogen til å berike visningen av et objekt. Legg til f.eks enhet på tunnellengde (m) som er hentet fra datakatalogen.
+
+For å løse denne oppgaven må du inn i filen lib/demo.js. 
