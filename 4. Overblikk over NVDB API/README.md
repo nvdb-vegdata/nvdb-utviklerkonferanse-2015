@@ -97,7 +97,6 @@ Et vegobjekt er koordinatfestet, som gjør at det kan vises på kart. Enten punk
 
 De fleste vegobjekter har en geometri som er utledet fra vegnettet, og er derfor plassert langs vegens senterlinje. Egengeometri blir mer og mer utbredt. Om et objekt har egengeometri eller ikke, er eksplisitt angitt i API-responsen. 
 
-(Bilde: Vanlig stedfesting vs. skiltpunkt i trondheim kommune)
 
     {
         geometriUtm33: "POINT (271441.3500267718 7039309.464531345)",
