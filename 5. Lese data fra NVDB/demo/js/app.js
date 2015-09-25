@@ -9,7 +9,7 @@ var performSearch = function(kriterie, callback) {
   get("https://www.vegvesen.no/nvdb/api/sok?kriterie=" + encodeURIComponent(JSON.stringify(kriterie)), callback)
 }
 
-var updateYear = function(year) {
+var update = function(year) {
   // Funksjonen tar ikke hensyn til årstallet nå.
   // Objekttype 67 - tunnelløp
   var searchCriteria = createCriteria(67, null, null, null);
@@ -21,7 +21,7 @@ var updateYear = function(year) {
 
 var timeLineUpdate = function(value) {
   // value er et tall mellom 1990 and 2015
-  updateYear(value);
+  update(value);
 }
 
 var countyUpdate = function(value) {
