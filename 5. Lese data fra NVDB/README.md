@@ -372,13 +372,15 @@ Eksempel på henting av regioner:
 
 ### Oppgave 1
 
-Implementer funksjonen countyUpdate til og ta hensyn til valg av fylke i søket.
+Implementer funksjonen `countyUpdate`:
+* ta hensyn til valg av fylke i søket.
 
-Hint: Øk antall objekter som hentes.
+Tips: `update`-funksjonen utfører søk og tegning
 
 ### Oppgave 2
 
-Implementer timelineUpdate funksjonen til å legge til et filter slik at man henter tunnelløp som er åpnet fra 1990 til dato som er satt i slideren.
+Implementer `timelineUpdate`-funksjonen:
+* legg til et filter slik at man henter tunnelløp som er åpnet fra 1990 til dato som er satt i slideren.
 
 Hint: Se hvilken egenskap som kan brukes i datakatalogen.
 Hint: Lag filteret i vegkart først.
