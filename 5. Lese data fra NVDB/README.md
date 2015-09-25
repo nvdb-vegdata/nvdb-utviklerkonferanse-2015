@@ -387,7 +387,7 @@ Hint: Lag filteret i vegkart først.
 
 ### Oppgave 3
 
-Tegn opp skred innenfor samme fylke og med samme dato-filter som med tunnelløp.
+Tegn opp skred innenfor samme fylke, og med samme dato-filter, som med tunnelløp.
 
 ### Oppgave 4 (Vanskelig)
 
