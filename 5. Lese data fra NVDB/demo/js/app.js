@@ -11,6 +11,7 @@ var performSearch = function(kriterie, callback) {
 
 var updateYear = function(year) {
   // Funksjonen tar ikke hensyn til årstallet nå.
+  // Objekttype 67 - tunnelløp
   var searchCriteria = createCriteria(67, null, null, null);
   performSearch(searchCriteria, function(features) {
     // Funksjon for å tegne tunneler i kartet. Den har en søsterfunksjon, drawSkred som tegner snøskred.
