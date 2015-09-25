@@ -179,7 +179,7 @@ Et vegobjekt har beliggenhet innenfor administrative områder.
 
 Et objekt kan ha en assosiasjon til andre objekter, oftest i form av en komposisjon. Et ordinært vegskilt består for eksempel av ett skiltpunkt, som er komponert av flere skiltplater. I NVDB kalles denne type relasjoner ofte for *mor-datter-koblinger*. 
 
-(bilde: vegskilt)
+![Vegskilt](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/4.%20Overblikk%20over%20NVDB%20API/vegskilt.jpg)
 
 
 ### Historikk
