@@ -204,3 +204,4 @@ For mer informasjon, les [Håndbok V830 Nasjonalt vegreferansesystem](http://www
 
 ![Arkitektur](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/4.%20Overblikk%20over%20NVDB%20API/arkitektur.jpg)
 
+
