@@ -97,7 +97,6 @@ Et vegobjekt er koordinatfestet, som gjør at det kan vises på kart. Enten punk
 
 De fleste vegobjekter har en geometri som er utledet fra vegnettet, og er derfor plassert langs vegens senterlinje. Egengeometri blir mer og mer utbredt. Om et objekt har egengeometri eller ikke, er eksplisitt angitt i API-responsen. 
 
-(Bilde: Vanlig stedfesting vs. skiltpunkt i trondheim kommune)
 
     {
         geometriUtm33: "POINT (271441.3500267718 7039309.464531345)",
@@ -179,7 +178,7 @@ Et vegobjekt har beliggenhet innenfor administrative områder.
 
 Et objekt kan ha en assosiasjon til andre objekter, oftest i form av en komposisjon. Et ordinært vegskilt består for eksempel av ett skiltpunkt, som er komponert av flere skiltplater. I NVDB kalles denne type relasjoner ofte for *mor-datter-koblinger*. 
 
-(bilde: vegskilt)
+![Vegskilt](https://raw.githubusercontent.com/nvdb-vegdata/nvdb-utviklerkonferanse-2015/master/4.%20Overblikk%20over%20NVDB%20API/vegskilt.jpg)
 
 
 ### Historikk

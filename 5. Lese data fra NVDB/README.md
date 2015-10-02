@@ -359,3 +359,38 @@ Eksempel på henting av regioner:
    ]
 }
 ```
+
+
+# Krav til workshop
+
+* Datamaskin
+* Teksteditor, f.eks sublimetext eller atom
+* Nettleser (testet i Chrome og Firefox)
+* Internett-tilkobling
+
+## Oppgaver
+
+### Oppgave 1
+
+Implementer funksjonen `countyUpdate`:
+* ta hensyn til valg av fylke i søket.
+
+Tips: `update`-funksjonen utfører søk og tegning
+
+### Oppgave 2
+
+Implementer `timelineUpdate`-funksjonen:
+* legg til et filter slik at man henter tunnelløp som er åpnet fra 1990 til dato som er satt i slideren.
+
+Hint: Se hvilken egenskap som kan brukes i datakatalogen.
+Hint: Lag filteret i vegkart først.
+
+### Oppgave 3
+
+Tegn opp skred innenfor samme fylke, og med samme dato-filter, som med tunnelløp.
+
+### Oppgave 4 (Vanskelig)
+
+Bruk datakatalogen til å berike visningen av et objekt. Legg til f.eks enhet på tunnellengde (m) som er hentet fra datakatalogen.
+
+For å løse denne oppgaven må du inn i filen lib/demo.js. 
